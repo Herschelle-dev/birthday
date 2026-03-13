@@ -1,0 +1,182 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+color:white;
+text-align:center;
+overflow-x:hidden;
+
+background: linear-gradient(-45deg,#ff4d6d,#ff758c,#ff7eb3,#ff9a9e);
+background-size:400% 400%;
+animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+padding:60px 20px;
+}
+
+h1{
+font-size:52px;
+text-shadow:0 0 10px rgba(255,255,255,0.8),
+0 0 20px rgba(255,100,150,0.8);
+}
+
+/* glass cards */
+
+.card{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+border-radius:18px;
+padding:25px;
+margin:25px auto;
+max-width:650px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+/* button */
+
+button{
+padding:14px 35px;
+border:none;
+border-radius:30px;
+font-size:16px;
+font-weight:bold;
+background:linear-gradient(45deg,#ffffff,#ffe6f0);
+color:#ff2e63;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
+
+button:hover{
+transform:scale(1.12);
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+#secret{
+display:none;
+margin-top:25px;
+font-size:20px;
+}
+
+/* floating hearts */
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation:float 8s linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- background music -->
+<audio id="bgMusic" loop>
+<source src="a-promise(chosic.com).mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<h1>For MY LOVELY WIFE ❤️</h1>
+
+<p id="typewriter"></p>
+
+<div class="card">
+<h2>The Day We Started Talking</h2>
+<p>That day was random for the world… but important for us. It was the start of a wonderful journey full of every emotion.</p>
+</div>
+
+<div class="card">
+<h2>My Favorite Memory</h2>
+<p>Every moment with you is special. Choosing one would not be fair to the others, but the one that always stays with me is when I first saw you. I never thought I was going to fall in love with a dinosaur (dumboo). I LOVE YOU BABY.</p>
+</div>
+
+<div class="card">
+<h2>Something I Love About You</h2>
+<p>Your existence. The way you smile, the way you breathe, the way you love me. Your kindness, your eyes, your cute nose, your hair, your voice, your personality, and your pure heart. Your existence makes my life better. I LOVE YOU BABY.</p>
+</div>
+
+<button onclick="showSecret()">Unlock My Secret ❤️</button>
+
+<div id="secret">
+💌 This is only Day 1 of your birthday surprises.  
+More surprises are coming before your big day 🎂  
+And sorry for everything I did… my sweet potato.  
+Love you baby ❤️
+</div>
+
+</div>
+
+<script>
+
+/* typewriter message */
+
+const text = "Day 1 of your birthday week... Every day until your birthday, a new surprise is waiting for you ❤️";
+let i = 0;
+
+function typing(){
+if(i < text.length){
+document.getElementById("typewriter").innerHTML += text.charAt(i);
+i++;
+setTimeout(typing,40);
+}
+}
+
+typing();
+
+/* secret reveal + music */
+
+function showSecret(){
+document.getElementById("secret").style.display="block";
+document.getElementById("bgMusic").play();
+}
+
+/* floating hearts */
+
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+},500);
+
+</script>
+
+</body>
+</html>
+```
