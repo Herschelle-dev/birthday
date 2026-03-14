@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Day 2 Surprise 💝</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+text-align:center;
+color:white;
+overflow:hidden;
+
+background: linear-gradient(-45deg,#ff4d6d,#ff758c,#ff7eb3,#ff9a9e);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+h1{
+margin-top:70px;
+font-size:46px;
+text-shadow:0 0 15px rgba(255,255,255,0.8);
+}
+
+.subtitle{
+font-size:20px;
+opacity:0.9;
+}
+
+/* gift boxes */
+
+.giftContainer{
+margin-top:80px;
+}
+
+.box{
+width:160px;
+height:160px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+margin:25px;
+border-radius:25px;
+cursor:pointer;
+font-size:60px;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(10px);
+transition:0.4s;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.box:hover{
+transform:scale(1.15) rotate(5deg);
+}
+
+.open{
+transform:scale(1.2);
+background:white;
+color:#ff4d6d;
+}
+
+/* message card */
+
+#message{
+margin-top:60px;
+font-size:22px;
+max-width:650px;
+margin-left:auto;
+margin-right:auto;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+display:none;
+}
+
+/* floating hearts */
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:22px;
+animation:float 7s linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
+}
+
+/* sparkle */
+
+.sparkle{
+position:absolute;
+font-size:18px;
+animation:spark 1s linear forwards;
+}
+
+@keyframes spark{
+0%{opacity:1;transform:scale(1);}
+100%{opacity:0;transform:scale(2);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎁 Day 2 Surprise</h1>
+<p class="subtitle">Three gifts are waiting for you… choose wisely 💝</p>
+
+<div class="giftContainer">
+
+<div class="box" onclick="openGift(1,this)">🎁</div>
+<div class="box" onclick="openGift(2,this)">🎁</div>
+<div class="box" onclick="openGift(3,this)">🎁</div>
+
+</div>
+
+<div id="message"></div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function openGift(num,element){
+
+element.classList.add("open")
+
+const msg=document.getElementById("message")
+msg.style.display="block"
+
+if(num===1){
+typeMessage("Even with miles between us… you make my world brighter every single day ☀️❤️")
+}
+
+if(num===2){
+typeMessage("My favorite memory is when we first started talking… I didn’t know then that you would become the most important person in my life 💬")
+}
+
+if(num===3){
+typeMessage("You unlocked the secret gift 💝\n\nI can't wait to celebrate your birthday with you. Until then… enjoy these little surprises every day ❤️")
+document.getElementById("music").play()
+}
+
+sparkleEffect(element)
+
+}
+
+function typeMessage(text){
+
+const msg=document.getElementById("message")
+msg.innerHTML=""
+
+let i=0
+
+function typing(){
+if(i<text.length){
+msg.innerHTML+=text.charAt(i)
+i++
+setTimeout(typing,35)
+}
+}
+
+typing()
+
+}
+
+function sparkleEffect(element){
+
+for(let i=0;i<12;i++){
+
+const spark=document.createElement("div")
+spark.className="sparkle"
+spark.innerHTML="✨"
+
+spark.style.left=(element.offsetLeft+Math.random()*100)+"px"
+spark.style.top=(element.offsetTop+Math.random()*100)+"px"
+
+document.body.appendChild(spark)
+
+setTimeout(()=>spark.remove(),1000)
+
+}
+
+}
+
+/* floating hearts */
+
+setInterval(()=>{
+
+const heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+heart.style.fontSize=(16+Math.random()*20)+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),7000)
+
+},400)
+
+</script>
+
+</body>
+</html >
+
+
+
